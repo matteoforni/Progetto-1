@@ -1,0 +1,32 @@
+body{
+  width: 100%;
+  height: 100%;
+  background: url(https://subtlepatterns.com/patterns/sativa.png) repeat fixed;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 200;
+}
+a{
+  text-decoration: none;
+}
+#welcome{
+  margin: auto;
+  text-align: center;
+  position: absolute;
+  left: 35%;
+  width: 30%;
+  height: 30%;
+  top: 35%;
+}
+#buttonNext{
+  width: 250px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid black;
+  font-weight: bold;
+  border-radius: 40px;
+}
+#buttonNext:hover{
+  color: rgba(255,255,255,1);
+  background: black;
+  transition: color 1.5s ease-out;
+}
