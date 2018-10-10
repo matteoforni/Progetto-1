@@ -17,7 +17,7 @@
 	<table id="mainForm">
 		<tr class="animated slideInRight">
 			<td><h5>Nome</h5></td>
-			<td><input type="text" name="nome" title="nome" id="cognome" onblur="textControl(this, this.content)"></td>
+			<td><input type="text" name="nome" title="nome" id="cognome" onblur="textControl(this.id, this.content)"></td>
 		</tr>
 		<tr class="animated slideInLeft">
 			<td><h5>Cognome</h5></td>
@@ -61,9 +61,12 @@
 			<td><input type="text" name="professione" title="professione" id="professione"></td>
 		</tr>
 		<tr>
-			<td class="animated slideInLeft"><input type="button" name="avanti" value="Avanti"></td>
+			<td class="animated slideInLeft"><input type="button" name="avanti" value="Avanti" id="avanti"></td>
 			<td class="animated slideInRight"><input type="button" name="correggi" value="Cancella"></td>
 		</tr>	
 	</table>
+	<?php
+
+	?>
 </body>
 </html>
