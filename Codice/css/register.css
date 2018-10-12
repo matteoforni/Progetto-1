@@ -10,12 +10,19 @@ a{
   text-decoration: none;
 }
 #mainForm{
-	position: absolute;
-	left: 40%;
-	width: 20%;
-  right: 40%;
-	text-align: left;
-
+  width: 25%;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 300px;
+}
+#mainTable{
+  position: relative;
+  margin: auto;
+}
+#data{
+  text-align: center;
 }
 h1{
   text-align: center;
@@ -25,6 +32,8 @@ h5{
   margin-bottom: 10px;
 }
 input{
+  position: relative;
+  box-sizing: border-box;
   height:  25px;
   margin-top: 10px;
   margin-bottom: 10px;
