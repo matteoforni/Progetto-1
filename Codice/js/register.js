@@ -1,31 +1,30 @@
-var control = false;
+var testo = false;
+var cap = false;
+var data= false;
+var number = false;
+var length = true;
+var phone = false;
+var email = false;
+
 function textValidation(id, text){
 	var regex = /^[a-zA-Z àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĆČĖĘÈÉÊËÌÍÎÏĮŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑČŠŽ]+$/;
-	if(regex.test(text) && text.length <= 50){
+	if(text != null && regex.test(text) && text.length <= 50){
 		document.getElementById(id).style.borderColor = "green";
-		control = true;	
-		removeErrorMessage(id);
-		return true;
+		testo = true;
 	}else {
-		control = false;	
 		document.getElementById(id).style.borderColor = "red";
-		createErrorMessage(id);
-		return false;
+		testo = false;
 	}
 }
 
 function capValidation(id, text){
 	var regex = /^[0-9]+$/;
-	if(regex.test(text) && text.length <= 5){
+	if(text != null && regex.test(text) && text.length <= 5){
 		document.getElementById(id).style.borderColor = "green";
-		control = true;	
-		removeErrorMessage(id);
-		return true;
+		cap = true;
 	}else{
 		document.getElementById(id).style.borderColor = "red";
-		control = false;
-		createErrorMessage(id);
-		return false;
+		cap = false;
 	}
 }
 
@@ -35,109 +34,60 @@ function dateValidation(id, date){
 	var millis = date.getTime();
 	if(millis>today){
 		document.getElementById(id).style.borderColor = "red";
-		control = false;
-		createErrorMessage(id);
-		return false;
+		data = false;
 	}else{
 		document.getElementById(id).style.borderColor = "green";
-		control = true;	
-		removeErrorMessage(id);
-		return true;
+		data = true;
 	}
 }
 
 function civicNumberValidation(id, text){
 	var regex = /^[0-9a-zA-Z]+$/;
-	if(regex.test(text) && text.length <= 4){
+	if(text != null && regex.test(text) && text.length <= 4){
 		document.getElementById(id).style.borderColor = "green";
-		control = true;	
-		removeErrorMessage(id);
-		return true;
+		number = true;
 	}else{
 		document.getElementById(id).style.borderColor = "red";
-		control = false;
-		createErrorMessage(id);
-		return false;
+		number = false;
 	}
 }
 
 function checkLength(id, text){
-	if(text.length <= 500){
-		document.getElementById(id).style.borderColor = "green";
-		control = true;	
-		removeErrorMessage(id);
-		return true;
-	}else {
-		document.getElementById(id).style.borderColor = "red";
-		control = false;
-		createErrorMessage(id);
-		return false;
+	if(text != null){
+		if(text.length <= 500){
+			document.getElementById(id).style.borderColor = "green";
+			length = true;
+		}else {
+			document.getElementById(id).style.borderColor = "red";
+			length = false;
+		}
 	}
 }
 
 function phoneValidator(id, text){
-	var regex = /^[0-9 +-]+$/;
-	if(regex.test(text) && text.length < 30 && text.length >= 10){
+	var regex = /^[\+]?[0-9 ]{10,15}$/;
+	if(regex.test(text)){
 		document.getElementById(id).style.borderColor = "green";
-		control = true;	
-		removeErrorMessage(id);
-		return true;
+		phone = true;
 	}else{
 		document.getElementById(id).style.borderColor = "red";
-		control = false;
-		createErrorMessage(id);
-		return false;
+		phone = false;
 	}
-
 }
 
 function emailValidator(id, text){
 	var regex = /^([A-Za-z0-9._%+-])+@([A-Za-z0-9.-])+\.([A-Za-z]){2,4}/;
-	if(regex.test(text) && text.length < 50){
+	if(text != null && regex.test(text) && text.length < 50){
 		document.getElementById(id).style.borderColor = "green";
-		control = true;	
-		removeErrorMessage(id);
-		return true;
+		email = true;
 	}else{
 		document.getElementById(id).style.borderColor = "red";
-		control = false;
-		createErrorMessage(id);
-		return false;
-	}
-
-}
-
-function createErrorMessage(id){
-	var div = document.createElement("div");
-	div.style.background = "white";
-	div.id = "error-" + id;
-	div.style.borderRadius = "10px";
-	div.style.width = "12%";
-	div.style.height = "12%";
-	div.style.zIndex = "2";	
-	var t = document.createTextNode("Il campo " + id + " è sbagliato");
-    div.appendChild(t);
-    document.body.insertBefore(div, document.body.firstChild);
-}
-
-function removeErrorMessage(id){
-	if(error){
-		var error = "error-" + id;
-		var text = document.getElementById(error);
-    	document.getElementById("mainForm").removeChild(text);
-	}	
-}
-
-function enableButton(){
-	if(textValidation() && capValidation() && emailValidator() && phoneValidator() && civicNumberValidation() && dateValidation()){
-		var button = document.getElementById("avanti");
-		button.style.disabled = "false";
-		button.addEventListener("click", disableInputs()); 
+		email = false;
 	}
 }
 
 function disableInputs(){
-	if(textValidation() && capValidation() && emailValidator() && phoneValidator() && civicNumberValidation() && dateValidation()){
+	if(testo && cap && email && phone && number && data && length){
 		document.getElementById("nome").disabled = true;
 		document.getElementById("cognome").disabled = true;
 		document.getElementById("data").disabled = true;
@@ -149,9 +99,13 @@ function disableInputs(){
 		document.getElementById("hobby").disabled = true;
 		document.getElementById("professione").disabled = true;
 
-		var button = document.getElementById("cancella");
-		button.value = "correggi";
-		button.addEventListener("click", enableInputs()); 
+		var clearButton = document.getElementById("cancella");
+		var goButton = document.getElementById("avanti");
+
+		clearButton.value = "correggi";
+		goButton.value = "invia";
+		goButton.removeEventListener("click", disableInputs);
+		clearButton.addEventListener("click", enableInputs);
 	}else{
 		enableOverlay();
 	}
@@ -169,15 +123,24 @@ function enableInputs(){
 	document.getElementById("hobby").disabled = false;
 	document.getElementById("professione").disabled = false;
 
-	var button = document.getElementById("cancella");
-	button.value = "cancella";
-	button.addEventListener("click", disableInputs()); 
+	var clearButton = document.getElementById("cancella");
+	var goButton = document.getElementById("avanti");
+
+	clearButton.value = "cancella";
+	goButton.value = "avanti";
+	goButton.removeEventListener("click", enableInputs);
+	clearButton.addEventListener("click", disableInputs);
+	console.log("::"+document.getElementById("nome").value)
 }
 
 function enableOverlay() {
-    document.getElementById("overlay").style.display = "block";
+  document.getElementById("overlay").style.display = "block";
 }
 
 function disableOverlay() {
-    document.getElementById("overlay").style.display = "none";
+	document.body.removeChild(document.getElementById("overlay"));
+}
+
+function clearForm(){
+	document.getElementById("form").reset();
 }
