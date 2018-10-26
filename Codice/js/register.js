@@ -15,6 +15,7 @@ function textValidation(id, text){
 		document.getElementById(id).style.borderColor = "red";
 		testo = false;
 	}
+	enableButton();
 }
 
 function capValidation(id, text){
@@ -26,6 +27,7 @@ function capValidation(id, text){
 		document.getElementById(id).style.borderColor = "red";
 		cap = false;
 	}
+	enableButton();
 }
 
 function dateValidation(id, date){
@@ -39,10 +41,11 @@ function dateValidation(id, date){
 		document.getElementById(id).style.borderColor = "green";
 		data = true;
 	}
+	enableButton();
 }
 
 function civicNumberValidation(id, text){
-	var regex = /^[0-9a-zA-Z]+$/;
+	var regex = /^[0-9]+[a-zA-Z]{0,1}$/;
 	if(text != null && regex.test(text) && text.length <= 4){
 		document.getElementById(id).style.borderColor = "green";
 		number = true;
@@ -50,6 +53,7 @@ function civicNumberValidation(id, text){
 		document.getElementById(id).style.borderColor = "red";
 		number = false;
 	}
+	enableButton();
 }
 
 function checkLength(id, text){
@@ -62,6 +66,7 @@ function checkLength(id, text){
 			length = false;
 		}
 	}
+	enableButton();
 }
 
 function phoneValidator(id, text){
@@ -73,6 +78,7 @@ function phoneValidator(id, text){
 		document.getElementById(id).style.borderColor = "red";
 		phone = false;
 	}
+	enableButton();
 }
 
 function emailValidator(id, text){
@@ -84,57 +90,13 @@ function emailValidator(id, text){
 		document.getElementById(id).style.borderColor = "red";
 		email = false;
 	}
-}
-
-function disableInputs(){
-	if(testo && cap && email && phone && number && data && length){
-		document.getElementById("nome").disabled = true;
-		document.getElementById("cognome").disabled = true;
-		document.getElementById("data").disabled = true;
-		document.getElementById("E-Mail").disabled = true;
-		document.getElementById("CAP").disabled = true;
-		document.getElementById("No-Civico").disabled = true;
-		document.getElementById("via").disabled = true;
-		document.getElementById("telefono").disabled = true;
-		document.getElementById("hobby").disabled = true;
-		document.getElementById("professione").disabled = true;
-
-		var clearButton = document.getElementById("cancella");
-		var goButton = document.getElementById("avanti");
-
-		clearButton.value = "correggi";
-		goButton.value = "invia";
-		goButton.removeEventListener("click", disableInputs);
-		clearButton.addEventListener("click", enableInputs);
-	}else{
-		enableOverlay();
-	}
-}
-
-function enableInputs(){
-	document.getElementById("nome").disabled = false;
-	document.getElementById("cognome").disabled = false;
-	document.getElementById("data").disabled = false;
-	document.getElementById("E-Mail").disabled = false;
-	document.getElementById("CAP").disabled = false;
-	document.getElementById("No-Civico").disabled = false;
-	document.getElementById("via").disabled = false;
-	document.getElementById("telefono").disabled = false;
-	document.getElementById("hobby").disabled = false;
-	document.getElementById("professione").disabled = false;
-
-	var clearButton = document.getElementById("cancella");
-	var goButton = document.getElementById("avanti");
-
-	clearButton.value = "cancella";
-	goButton.value = "avanti";
-	goButton.removeEventListener("click", enableInputs);
-	clearButton.addEventListener("click", disableInputs);
-	console.log("::"+document.getElementById("nome").value)
+	enableButton();
 }
 
 function enableOverlay() {
-  document.getElementById("overlay").style.display = "block";
+	if(testo && cap && phone && length && data && number && email){
+		document.getElementById("overlay").style.display = "block";
+	}	
 }
 
 function disableOverlay() {
@@ -143,4 +105,21 @@ function disableOverlay() {
 
 function clearForm(){
 	document.getElementById("form").reset();
+}
+
+function enableButton(){
+	console.log(testo)
+	console.log(cap)
+	console.log(phone)
+	console.log(length)
+	console.log(data)
+	console.log(number)
+	console.log(email)
+	if(testo && cap && phone && length && data && number && email){
+		console.log("alora");
+		document.getElementById("avanti").disabled = false;
+	}else{
+		console.log("ooooo")
+		document.getElementById("avanti").disabled = true;		
+	}
 }

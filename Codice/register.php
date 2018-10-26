@@ -18,41 +18,41 @@
   </div>
 	<div id="mainForm">
 		<h1 class="animated slideInDown">Registrati</h1>
-		<form method="POST" action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" id="form">
+		<form method="POST" action="correction.php" id="form">
 			<table id="mainTable">
 				<tr>
 					<td><h5>Nome *</h5></td>
-					<td><input type="text" name="nome" title="nome" id="nome" onblur="textValidation('nome', this.value)"></td>
+					<td><input type="text" name="nome" title="nome" id="nome" onblur="textValidation('nome', this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>Cognome *</h5></td>
-					<td><input type="text" name="cognome" title="cognome" id="cognome" onblur="textValidation(this.id, this.value)"></td>
+					<td><input type="text" name="cognome" title="cognome" id="cognome" onblur="textValidation(this.id, this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>Data di nascita *</h5></td>
 					<td><input type="date" name="data" id="data"
-							onblur="dateValidation(this.id, this.value)"></td>
+							onblur="dateValidation(this.id, this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>E-Mail *</h5></td>
-					<td><input type="text" name="E-Mail" title="E-Mail" id="E-Mail" onblur="emailValidator(this.id, this.value)"	></td>
+					<td><input type="text" name="E-Mail" title="E-Mail" id="E-Mail" onblur="emailValidator(this.id, this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>CAP *</h5></td>
 					<td><input type="text" name="CAP" title="CAP" id="CAP"
-						onblur="capValidation(this.id, this.value)"></td>
+						onblur="capValidation(this.id, this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>Num. Civico *</h5></td>
-					<td><input type="text" name="No-Civico" title="No-Civico" id="No-Civico" onblur="civicNumberValidation(this.	id, this.value)"></td>
+					<td><input type="text" name="No-Civico" title="No-Civico" id="No-Civico" onblur="civicNumberValidation(this.id, this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>Via *</h5></td>
-					<td><input type="text" name="via" title="via" id="via"  onblur="textValidation(this.id, this.value)">	</td>
+					<td><input type="text" name="via" title="via" id="via"  onblur="textValidation(this.id, this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>Telefono *</h5></td>
-					<td><input type="text" name="telefono" title="telefono" id="telefono" onblur="phoneValidator(this.id, this	.value)"></td>
+					<td><input type="text" name="telefono" title="telefono" id="telefono" onblur="phoneValidator(this.id, this.value)" required="true"></td>
 				</tr>
 				<tr>
 					<td><h5>Sesso *</h5></td>
@@ -70,23 +70,11 @@
 				</tr>
 				<tr>
 					<td><input type="button" name="cancella" id="cancella" value="Cancella" onclick="clearForm()"></td>
-          <td><input type="button" name="avanti" value="Avanti" id="avanti" onclick="disableInputs()"></td>
+                    <td><input type="submit" name="avanti" value="Avanti" id="avanti" disabled="true"></td>
 				</tr>
 			</table>
 		</form>
 	</div>
-	<?php
-		if($_SERVER["REQUEST_METHOD"] == "POST"){
-			$directoryName = 'csv';
-      $fileName = "csv/globale.csv";
-			if(!is_dir($directoryName)){
-    			mkdir($directoryName, 0755);
-			}
-      if(!is_file($fileName)){
-        $file = fopen($fileName, 'w');
-      }
-		}
-	?>
 	<script type="text/javascript" src="js/register.js"></script>
 </body>
 </html>

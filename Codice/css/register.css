@@ -42,7 +42,7 @@ input{
   border: solid 1px rgb(180,180,180);
 }
 input[type=radio]{
-  width: 10%;
+  width: 5%;
 }
 #overlay {
   position: absolute;
