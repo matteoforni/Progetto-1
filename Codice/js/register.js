@@ -116,10 +116,8 @@ function enableButton(){
 	console.log(number)
 	console.log(email)
 	if(testo && cap && phone && length && data && number && email){
-		console.log("alora");
 		document.getElementById("avanti").disabled = false;
 	}else{
-		console.log("ooooo")
 		document.getElementById("avanti").disabled = true;		
 	}
 }

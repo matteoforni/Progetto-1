@@ -1,3 +1,3 @@
 function backToForm(){
-	history.go(-1);
+	window.history.back();
 }
