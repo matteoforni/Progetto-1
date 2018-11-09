@@ -107,32 +107,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           <td><input type='text' name='professione' value='".$professione."'></td>
         <tr>
           <td><input type='button' name='correggi'value='Correggi'onclick='backToForm()'></td>
-          <td><input type='submit' name='invia' value='Invia' id='invia'></td>
+          <td><input type='submit' name='registra' value='Registra' id='registra'></td>
         </tr>
       </table>
     </form>";
     echo $table;
-
-    function writeData($content){
-      $directoryName = 'registrazioni';
-      $file = "registrazioni/globale.csv";
-      if(!is_dir($directoryName)){
-        mkdir($directoryName, 0755);
-      }
-      if(!is_file($fileName)){
-        $handle = fopen($file, "a+") or die('Cannot open file:  ' . $file);
-      }
-      
-      $result = "";
-      foreach ($content as $variable) {
-          $result = $result . $variable . ",";
-      }
-      
-      $result =  substr($result,0,(strlen($result)-2)) . "\n";
-      var_dump($result);
-      fwrite($handle, $result, strlen($result) + "\n");
-      fclose($handle);  
-    }
   }
 }  
 ?>

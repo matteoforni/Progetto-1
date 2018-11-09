@@ -93,28 +93,11 @@ function emailValidator(id, text){
 	enableButton();
 }
 
-function enableOverlay() {
-	if(testo && cap && phone && length && data && number && email){
-		document.getElementById("overlay").style.display = "block";
-	}	
-}
-
-function disableOverlay() {
-	document.body.removeChild(document.getElementById("overlay"));
-}
-
 function clearForm(){
 	document.getElementById("form").reset();
 }
 
 function enableButton(){
-	console.log(testo)
-	console.log(cap)
-	console.log(phone)
-	console.log(length)
-	console.log(data)
-	console.log(number)
-	console.log(email)
 	if(testo && cap && phone && length && data && number && email){
 		document.getElementById("avanti").disabled = false;
 	}else{

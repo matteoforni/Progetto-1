@@ -45,17 +45,19 @@
       );
 
 
-      $directoryName = 'registrazioni';
-      $file = "registrazioni/globale.csv";
-      $daily = "registrazioni/" . date("Y-m-d") . ".csv";
+      $directoryName = 'Registrazioni';
+      $file = "Registrazioni/Registrazioni_tutte.csv";
+      $daily = "Registrazioni/Registrazione_" . date("Y-m-d") . ".csv";
       $handle = "";
       $dailyHandle = "";
+      $data = date("Y-m-d");
+      $ora = date('H:i');
 
       if(!is_dir($directoryName)){
         mkdir($directoryName, 0755);
       }
       if(!is_file($file)){
-        $header = "nome, cognome, data, email, citta, cap, NoCivico, via, telefono, sesso, hobby, professione \n";
+        $header = "nome, cognome, data, email, citta, cap, NoCivico, via, telefono, sesso, hobby, professione, data, ora \n";
         $handle = fopen($file, "a") or die('Cannot open file:  ' . $file);
         fwrite($handle,  $header, strlen($header) + "\n");
       }else{
@@ -63,11 +65,11 @@
       }
 
       if(!is_file($daily)){
-        $header = "nome, cognome, data, email, citta, cap, NoCivico, via, telefono, sesso, hobby, professione \n";
+        $header = "nome, cognome, data, email, citta, cap, NoCivico, via, telefono, sesso, hobby, professione, data, ora \n";
         $dailyHandle = fopen($daily, "a") or die('Cannot open file:  ' . $daily);
         fwrite($dailyHandle,  $header, strlen($header) + "\n");
       }else{
-        $dailyHandle = fopen($file, "a");
+        $dailyHandle = fopen($daily, "a");
       }
       
         
@@ -75,10 +77,11 @@
       foreach ($content as $variable) {
         $result = $result . $variable .",";
       }
-      $result = $result . "\n";
+      $result = $result . "" . $data . "," . $ora . "\n";
       fwrite($handle, $result, strlen($result) + "\n");
-      fwrite($dailyHandle, $result, strlen($result) + "\n");
       fclose($handle);
+
+      fwrite($dailyHandle, $result, strlen($result) + "\n");
       fclose($dailyHandle);
       header("Location: final.php");
       die();

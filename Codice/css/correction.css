@@ -44,3 +44,6 @@ input{
   border: none;
   background: transparent;
 }
+input[type=text]{
+  width: 100%;
+}
