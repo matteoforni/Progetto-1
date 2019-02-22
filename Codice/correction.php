@@ -112,6 +112,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </table>
     </form>";
     echo $table;
+    /*table*/
   }
 }  
 ?>
